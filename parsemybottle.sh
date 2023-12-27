@@ -86,15 +86,15 @@ else
     cut -d '"' -f2 | egrep -v "Styleshout" > /tmp/hostslist ;
 
         # Getting the IP addresses of all hosts captured
-        for url in $(cat /tmp/hostslist); do host $url | grep "has address" >> /tmp/hostslist; done;
-        cat /tmp/hostslist | awk '{print "\033[0;33m" $0 "\033[0m"}'
+        for url in $(cat /tmp/hostslist | cut -d "/" -f3); do host $url | grep "has address" >> /tmp/resolved_list; done;
+        cat /tmp/resolved_list | awk '{print "\033[0;33m" $0 "\033[0m"}'
  
         # Deleting the index.html file 
         print_red "[!] DELETING INDEX.HTML FILE..."
         rm /tmp/index.html
         animate_dots
-        print_red "[!] DELETING HOSTSLISTS FILE..."
-        rm /tmp/hostslist 
+        print_red "[!] DELETING LISTS FILE..."
+        rm /tmp/hostslist && rm /tmp/resolved_list
         animate_dots
         print_green "[+] DONE! :)"
         echo ""
