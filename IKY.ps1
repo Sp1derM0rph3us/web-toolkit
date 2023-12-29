@@ -1,5 +1,5 @@
 ### I KNOW YOU ###
-# ps1 script to get information in an specific webserver
+# ps1 script to get information from a specific webserver
 # Made by sp1d3rm0rph3us
 # Based on DESEC Security's script
 
