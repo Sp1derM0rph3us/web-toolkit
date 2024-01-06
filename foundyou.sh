@@ -36,11 +36,11 @@ banner(){
 
 # MAIN CONDITION #
 if [ "$#" == "" ]; then
-    echo "Usage $0 [ipaddr-or-fqdn]"
+    echo "Usage $0 [url]"
 
 else
     banner
-    hostinfo=$(host "$1")
+    hostinfo=$(host "$1" && host -t ns "$1" && host -t ptr "$1" && host -t txt "$1")
     printf "[*] Getting $1's IP addresses\n"
     sleep 1
     if echo "$hostinfo" | grep -q "NXDOMAIN"; then
